@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = "gleeful-moxie-4bb6e3.netlify.app";
 const uri = "mongodb+srv://ranimm01:I729kBQsuURfmgBw@cluster0.fsmsdt5.mongodb.net/?retryWrites=true&w=majority";
 
 
