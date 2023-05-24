@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"  # Specify the build command
+  publish = "public/"        # Specify the publish directory
+
+[[redirects]]
+  from = "/*"               # Redirect all paths to the same index.html file
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  # Set security headers to improve security
+  for = "/*"
+    [headers.values]
+      X-Frame-Options = "DENY"
+      X-XSS-Protection = "1; mode=block"
+      X-Content-Type-Options = "nosniff"
