@@ -1,7 +1,8 @@
 [build]
-  command = "npm run build"
-  publish = "public"  # Specify the directory where your built files are located
+  command = "node app.js"  # Specify the build command
+  publish = "public"       # Specify the publish directory
 
-[build.environment]
-  BASE_DIRECTORY = "/"  # Set the base directory to the root of your project
-
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
