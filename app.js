@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const uri = "mongodb+srv://ranimm01:I729kBQsuURfmgBw@cluster0.fsmsdt5.mongodb.net/?retryWrites=true&w=majority";
 
 
@@ -82,8 +82,8 @@ client.connect().then(() => {
 
     // ======================================start server======================================== //
     app.listen(port, () => {
-        console.log(`Example app listening on port ${port}`)
-    })
+        console.log(`Example app listening on port ${port}`);
+    });
 
 })
 
