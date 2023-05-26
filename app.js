@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 
 const app = express();
-const port = "gleeful-moxie-4bb6e3.netlify.app";
+const port = "https://gleeful-moxie-4bb6e3.netlify.app/";
 const uri = "mongodb+srv://ranimm01:I729kBQsuURfmgBw@cluster0.fsmsdt5.mongodb.net/?retryWrites=true&w=majority";
 
 
@@ -34,8 +34,9 @@ client.connect().then(() => {
     app.use(express.static(path.join(__dirname, 'public')));
 
     app.get('/', (request, response) => {
-        response.sendFile(path.join(__dirname, 'public', 'index.html'));
+        response.sendFile(path.join(__dirname, 'public', 'index.html'), { root: __dirname });
     });
+
 
 
     app.get('/tweets/', (request, response) => {
