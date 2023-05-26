@@ -1,5 +1,5 @@
 //fetching data from json file
-fetch('https://gleeful-moxie-4bb6e3.netlify.app//tweets/')
+fetch('https://gleeful-moxie-4bb6e3.netlify.app/tweets/')
     .then(response => response.json())
     .then(data => {
         //shuffle the array inside the json,
