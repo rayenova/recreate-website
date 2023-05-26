@@ -24,7 +24,6 @@ client.connect().then(() => {
     const database = client.db("test")
     const collection = database.collection("fuck")
 
-    app.use(bodyParser.json());
 
     app.use((request, response, next) => {
         response.header("Access-Control-Allow-Origin", "*");
@@ -32,6 +31,7 @@ client.connect().then(() => {
         next();
     });
 
+    app.use(bodyParser.json());
 
 
     app.get('/tweets/', (request, response) => {
