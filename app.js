@@ -78,9 +78,11 @@ client.connect().then(() => {
     });
 
 
+    // Serve the static files
     app.use(express.static(path.join(__dirname, 'public')));
 
-    app.get('/', (request, response) => {
+    // Always serve the HTML file for any other request
+    app.get('*', (request, response) => {
         response.sendFile(path.join(__dirname, 'public', 'index.html'), { root: __dirname });
     });
 
