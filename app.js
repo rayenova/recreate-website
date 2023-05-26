@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 
 const app = express();
-// const port = "https://gleeful-moxie-4bb6e3.netlify.app/";
+const port = "gleeful-moxie-4bb6e3.netlify.app";
 const uri = "mongodb+srv://ranimm01:I729kBQsuURfmgBw@cluster0.fsmsdt5.mongodb.net/?retryWrites=true&w=majority";
 
 
@@ -24,23 +24,24 @@ client.connect().then(() => {
     const database = client.db("test")
     const collection = database.collection("fuck")
 
+    app.use(bodyParser.json());
 
     app.use((request, response, next) => {
         response.header("Access-Control-Allow-Origin", "*");
-        response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         next();
+    })
+
+    app.use(express.static(path.join(__dirname, 'public')));
+
+    app.get('/', (request, response) => {
+        response.sendFile(path.join(__dirname, 'public', 'index.html'));
     });
 
 
-    app.use(bodyParser.json());
-
     app.get('/tweets/', (request, response) => {
-        console.log("request comes in" + request);
-        collection
-            .find()
-            .toArray()
+        console.log("request comes in" + request)
+        collection.find().toArray()
             .then((documents) => {
-                console.log('Fetched documents:', documents);
                 response.setHeader('Content-Type', 'application/json');
                 response.status(200).json(documents);
             })
@@ -49,7 +50,6 @@ client.connect().then(() => {
                 response.status(500).json({ error: 'Internal server error' });
             });
     });
-
 
 
     // =========================================the post request===============================================//
@@ -82,17 +82,9 @@ client.connect().then(() => {
     });
 
 
-    app.use(express.static(path.join(__dirname, 'public')));
-
-    app.get('/', (request, response) => {
-        response.sendFile(path.join(__dirname, 'public', 'index.html'), { root: __dirname });
-    });
-
-
-
     // ======================================start server======================================== //
-    app.listen( () => {
-        console.log(`Example app listening on port `);
+    app.listen(port, () => {
+        console.log(`Example app listening on port ${port}`);
     });
 
 })
