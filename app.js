@@ -31,13 +31,16 @@ client.connect().then(() => {
         next();
     });
 
+
     app.use(bodyParser.json());
 
-
     app.get('/tweets/', (request, response) => {
-        console.log("request comes in" + request)
-        collection.find().toArray()
+        console.log("request comes in" + request);
+        collection
+            .find()
+            .toArray()
             .then((documents) => {
+                console.log('Fetched documents:', documents);
                 response.setHeader('Content-Type', 'application/json');
                 response.status(200).json(documents);
             })
@@ -46,6 +49,7 @@ client.connect().then(() => {
                 response.status(500).json({ error: 'Internal server error' });
             });
     });
+
 
 
     // =========================================the post request===============================================//
@@ -78,11 +82,9 @@ client.connect().then(() => {
     });
 
 
-    // Serve the static files
     app.use(express.static(path.join(__dirname, 'public')));
 
-    // Always serve the HTML file for any other request
-    app.get('*', (request, response) => {
+    app.get('/', (request, response) => {
         response.sendFile(path.join(__dirname, 'public', 'index.html'), { root: __dirname });
     });
 
