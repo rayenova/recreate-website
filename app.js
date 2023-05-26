@@ -33,13 +33,6 @@ client.connect().then(() => {
     });
 
 
-    app.use(express.static(path.join(__dirname, 'public')));
-
-    app.get('/', (request, response) => {
-        response.sendFile(path.join(__dirname, 'public', 'index.html'), { root: __dirname });
-    });
-
-
 
     app.get('/tweets/', (request, response) => {
         console.log("request comes in" + request)
@@ -83,6 +76,14 @@ client.connect().then(() => {
             res.status(500).send('Internal server error');
         }
     });
+
+
+    app.use(express.static(path.join(__dirname, 'public')));
+
+    app.get('/', (request, response) => {
+        response.sendFile(path.join(__dirname, 'public', 'index.html'), { root: __dirname });
+    });
+
 
 
     // ======================================start server======================================== //
