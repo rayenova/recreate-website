@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 
 const app = express();
-const port = "https://gleeful-moxie-4bb6e3.netlify.app/";
+// const port = "https://gleeful-moxie-4bb6e3.netlify.app/";
 const uri = "mongodb+srv://ranimm01:I729kBQsuURfmgBw@cluster0.fsmsdt5.mongodb.net/?retryWrites=true&w=majority";
 
 
@@ -85,7 +85,7 @@ client.connect().then(() => {
 
     // ======================================start server======================================== //
     app.listen(port, () => {
-        console.log(`Example app listening on port ${port}`);
+        console.log(`Example app listening on port `);
     });
 
 })
