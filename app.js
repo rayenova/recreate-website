@@ -40,15 +40,17 @@ client.connect().then(() => {
 
     app.get('/tweets/', (request, response) => {
         console.log("request comes in" + request)
-        response.statusCode = 200;
-        response.setHeader('Content-Type', 'application/json');
+        collection.find().toArray()
+            .then((documents) => {
+                response.setHeader('Content-Type', 'application/json');
+                response.status(200).json(documents);
+            })
+            .catch((error) => {
+                console.error(error);
+                response.status(500).json({ error: 'Internal server error' });
+            });
+    });
 
-        console.log(collection.find())
-
-        collection.find().toArray().then((documents) => {
-            response.end(JSON.stringify(documents));
-        })
-    })
 
     // =========================================the post request===============================================//
     app.post('/tweet/', (req, res) => {
