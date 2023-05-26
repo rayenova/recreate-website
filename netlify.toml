@@ -1,6 +1,6 @@
 [build]
-  command = "npm run build"  # Specify the build command
-  publish = "public"       # Specify the publish directory
+command = "node app.js"  # Specify the command to start your server
+publish = "."            # Specify the publish directory (root of your project)
 
 [[redirects]]
   from = "/*"
