@@ -1,4 +1,5 @@
 [build]
+  command = "npm run build"
   publish = "public"  # Specify the correct publish directory where your built files are located
 
 [[redirects]]
