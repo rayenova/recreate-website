@@ -6,9 +6,8 @@ const bodyParser = require('body-parser');
 
 
 const app = express();
-const port = "3000";
-const uri = "mongodb+srv://ranimm01:I729kBQsuURfmgBw@cluster0.fsmsdt5.mongodb.net/?retryWrites=true&w=majority";
-
+const port = process.env.PORT || 3000;
+const uri = process.env.MONGODB_URI; // Updated line
 
 //  ================================================ mongodb connect ================================================= //
 const client = new MongoClient(uri, {
