@@ -1,11 +1,10 @@
-[build]
-  command = "npm run build"
-  publish = "public"  # Specify the correct publish directory where your built files are located
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
+
 
 [[headers]]
   for = "/*.js"  # Add this section to specify the JavaScript files
