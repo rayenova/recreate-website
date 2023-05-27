@@ -1,6 +1,6 @@
 [build]
-command = "npm run build"  # Specify the command to start your server
-publish = "."            # Specify the publish directory (root of your project)
+  command = "npm run build"
+  publish = "public"  # Specify the correct publish directory where your built files are located
 
 [[redirects]]
   from = "/*"
@@ -8,6 +8,6 @@ publish = "."            # Specify the publish directory (root of your project)
   status = 200
 
 [[headers]]
-  for = "/*"
+  for = "/*.js"  # Add this section to specify the JavaScript files
     [headers.values]
-    Access-Control-Allow-Origin = "*"
+    Content-Type = "application/javascript"
