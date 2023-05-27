@@ -16,7 +16,7 @@
   "license": "ISC",
 "scripts": {
   "dev": "node app.js",
-  "build": "next build",
+  "build": "echo: 'running build'",
   "start": "npm-run-script-build && cross-env NODE_ENV=production node app.js"
 },
   "dependencies": {
