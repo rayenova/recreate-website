@@ -15,6 +15,7 @@
   "author": "Ranim",
   "license": "ISC",
 "scripts": {
+  "dev": "node app.js",
   "start": "node app.js",
   "build": "echo 'Performing build steps...'"
 },
