@@ -1,3 +1,5 @@
+[build]
+  publish = "public"  # Specify the correct publish directory where your built files are located
 
 [[redirects]]
   from = "/*"
