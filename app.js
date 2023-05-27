@@ -40,6 +40,7 @@ client.connect().then(() => {
 
     app.get('/tweets/', (request, response) => {
         console.log("request comes in" + request)
+        response.setHeader('Content-Type', 'application/json');
         collection.find().toArray()
             .then((documents) => {
                 response.setHeader('Content-Type', 'application/json');
