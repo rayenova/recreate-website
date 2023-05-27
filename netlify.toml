@@ -9,6 +9,6 @@
 
 
 [[headers]]
-  for = "/*.js"  # Add this section to specify the JavaScript files
+  for = "/*"  # Add this section to specify the JavaScript files
     [headers.values]
     Content-Type = "application/javascript"
