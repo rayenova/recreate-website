@@ -16,7 +16,7 @@
   "license": "ISC",
 "scripts": {
   "dev": "node app.js",
-  "build": "echo: 'running build'",
+  "build": "echo 'Performing build steps...'",
 "start": "NODE_ENV=production node app.js"
 },
   "dependencies": {
