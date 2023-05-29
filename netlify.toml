@@ -1,5 +1,3 @@
 [build]
-command = "npm run build && node app.js"
-  publish = "public"
-
-
+command = "npm start"
+publish = "public"
