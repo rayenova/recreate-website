@@ -4,6 +4,6 @@
   publish = "public"
 
 [[redirects]]
-  from = "/tweet/*" # Define the route for your server-side function
+  from = "/tweet*" # Define the route for your server-side function
   to = "/.netlify/functions/tweet" # Map the route to your serverless function
 
