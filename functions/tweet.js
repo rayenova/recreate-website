@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+const path = require('path');
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     if (req.method === 'POST') {
         try {
             const tweetText = req.body.tweetText;
@@ -23,14 +25,14 @@ router.post('/', (req, res) => {
 
             await fs.promises.writeFile(filePath, JSON.stringify(data));
 
-            return response.status(200).send(newTweet);
+            return res.status(200).send(newTweet);
         } catch (err) {
             console.error(err);
-            return response.status(500).send('Internal server error');
+            return res.status(500).send('Internal server error');
         }
     }
 
-    return response.status(404).send('Not found');
+    return res.status(404).send('Not found');
 });
 
 module.exports = router;
