@@ -43,10 +43,6 @@ app.post('/', async (req, res) => {
     return res.status(404).send('Not found');
 });
 
-// Serve the index.html file for all other routes
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 module.exports = app;
 
