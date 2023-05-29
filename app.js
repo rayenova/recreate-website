@@ -9,11 +9,11 @@ app.use(cors());
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
 
 // Route handler for the root URL path '/'
 app.post('/', async (req, res) => {
-    if (req.method === 'POST') {
-        try {
+    try {
             const tweetText = req.body.tweetText;
             const timestamp = new Date().toLocaleTimeString();
             const newTweet = {
@@ -34,15 +34,11 @@ app.post('/', async (req, res) => {
             await fs.promises.writeFile(filePath, JSON.stringify(data));
 
             return res.status(200).send(newTweet);
-        } catch (err) {
-            console.error(err);
-            return res.status(500).send('Internal server error');
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'An internal server error occurred' });
         }
-    }
-
-    return res.status(404).send('Not found');
-});
-
+    })
 
 module.exports = app;
 
