@@ -1,13 +1,7 @@
 const express = require('express');
-const cors = require('cors');
+const router = express.Router();
 
-const path = require('path');
-const fs = require('fs');
-const { send } = require('express');
-const app = express();
-app.use(cors());
-
-module.exports = async (req, response) => {
+router.post('/', (req, res) => {
     if (req.method === 'POST') {
         try {
             const tweetText = req.body.tweetText;
@@ -37,4 +31,6 @@ module.exports = async (req, response) => {
     }
 
     return response.status(404).send('Not found');
-};
+});
+
+module.exports = router;

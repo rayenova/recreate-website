@@ -1,16 +1,19 @@
-// app.js
 const express = require('express');
 const path = require('path');
 const app = express();
 
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Import the tweet function from the tweet.js file
-const tweetFunction = require('./functions/tweet');
+// Import the tweet route
+const tweetRoute = require('./tweet');
+
+// Use the tweet route for the '/tweet' URL path
+app.use('/tweet', tweetRoute);
 
 // Serve the index.html file for other routes
-app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 module.exports = app;
