@@ -6,7 +6,7 @@ $('.form').submit(function (event) {
 
     //ajax for the post method
     $.ajax({
-        url: '/tweet',
+        url: '/',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ tweetText: tweetText }),
