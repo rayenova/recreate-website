@@ -26,7 +26,7 @@ app.post('/tweet', async (req, res) => {
             content: tweetText,
         };
 
-        const filePath = path.join(__dirname, '../public', 'assets', 'js', 'mock-data.json');
+        const filePath = path.resolve(__dirname, '..', 'public', 'assets', 'js', 'mock-data.json');
         const jsonData = await fs.promises.readFile(filePath, 'utf8');
         const data = JSON.parse(jsonData);
 
