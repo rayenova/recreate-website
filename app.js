@@ -8,16 +8,18 @@ const bodyParser = require('body-parser');
 const port = 3000;
 
 //serve files from public directory
-app.use(express.static('public'));
+    app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+    app.use((request, response, next) => {
+        response.header("Access-Control-Allow-Origin", "*");
+        next();
+    })
 
+    app.use(express.static(path.join(__dirname, 'public')));
 
-// define routes
-app.get('/', (req, res) => {
-    res.sendFile(indexPath);
-});
+    app.get('/', (request, response) => {
+        response.sendFile(path.join(__dirname, 'public', 'index.html'));
+    });
 
 // =========================================the post request===============================================//
 // add a new route to handle POST requests to /tweet
