@@ -1,5 +1,5 @@
 //fetching data from json file
-fetch('/js/mock-data.json')
+fetch('assets/js/mock-data.json')
     .then(response => response.json())
     .then(data => {
         //shuffle the array inside the json,
