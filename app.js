@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const tweetFunction = require('./functions/tweet');
 
 // Add the tweet function as a Netlify Function
-app.use('/.netlify/functions/tweet', tweetFunction);
+app.use('/', tweetFunction);
 
 // Serve the index.html file for other routes
 app.get('*', (request, response) => {
