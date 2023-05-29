@@ -4,7 +4,7 @@ const followList = document.querySelector(".follow-list");
 // it counts the amount from 0
 let followLimit = 0;
 
-fetch('/tweets/')
+fetch('/js/mock-data.json')
     .then(response => response.json())
     .then(data => {
         //shuffles the fetched data random

@@ -1,5 +1,5 @@
 //fetching data from json file
-fetch('/tweets/')
+fetch('/js/mock-data.json')
     .then(response => response.json())
     .then(data => {
         //shuffle the array inside the json,
