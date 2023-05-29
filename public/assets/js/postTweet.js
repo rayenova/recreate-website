@@ -6,7 +6,7 @@ $('.form').submit(function (event) {
 
     //ajax for the post method
     $.ajax({
-        url: '/',
+        url: 'https://gleeful-moxie-4bb6e3.netlify.app/',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ tweetText: tweetText }),
