@@ -1,9 +1,13 @@
+const express = require('express');
+const cors = require('cors');
+
 const path = require('path');
 const fs = require('fs');
-const { send } = require('micro');
-const microCors = require('micro-cors')();
+const { send } = require('express');
+const app = express();
+app.use(cors());
 
-module.exports = microCors(async (req, res) => {
+module.exports = async (req, response) => {
     if (req.method === 'POST') {
         try {
             const tweetText = req.body.tweetText;
@@ -25,12 +29,12 @@ module.exports = microCors(async (req, res) => {
 
             await fs.promises.writeFile(filePath, JSON.stringify(data));
 
-            return send(res, 200, newTweet);
+            return response.status(200).send(newTweet);
         } catch (err) {
             console.error(err);
-            return send(res, 500, 'Internal server error');
+            return response.status(500).send('Internal server error');
         }
     }
 
-    return send(res, 404, 'Not found');
-});
+    return response.status(404).send('Not found');
+};
