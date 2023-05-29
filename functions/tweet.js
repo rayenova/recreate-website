@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-router.post('/', async (req, res) => {
+router.post('/tweet', async (req, res) => {
     if (req.method === 'POST') {
         try {
             const tweetText = req.body.tweetText;
