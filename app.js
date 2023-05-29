@@ -1,24 +1,51 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
+
 const app = express();
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Import the tweet route
-const tweetRoute = require('./tweet');
+// Route handler for the root URL path '/'
+app.post('/', async (req, res) => {
+    if (req.method === 'POST') {
+        try {
+            const tweetText = req.body.tweetText;
+            const timestamp = new Date().toLocaleTimeString();
+            const newTweet = {
+                author: 'Ranim',
+                username: 'Reynim',
+                profile_image:
+                    'https://t3.ftcdn.net/jpg/05/58/82/34/240_F_558823483_uP4but5eEUX1ub7sY9As43YJ4er67J4E.jpg',
+                timestamp: timestamp,
+                content: tweetText,
+            };
 
-// Use the tweet route for the root URL path
-app.use('/', tweetRoute); // Update the route to '/'
+            const filePath = path.resolve(__dirname, 'public', 'assets', 'js', 'mock-data.json');
+            const jsonData = await fs.promises.readFile(filePath, 'utf8');
+            const data = JSON.parse(jsonData);
 
-// Serve the index.html file for other routes
+            data.push(newTweet);
+
+            await fs.promises.writeFile(filePath, JSON.stringify(data));
+
+            return res.status(200).send(newTweet);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).send('Internal server error');
+        }
+    }
+
+    return res.status(404).send('Not found');
+});
+
+// Serve the index.html file for all other routes
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 module.exports = app;
-
-
 
 
 
