@@ -8,9 +8,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Import the tweet function from the tweet.js file
 const tweetFunction = require('./functions/tweet');
 
-// Add the tweet function as a Netlify Function
-app.use('/', tweetFunction);
-
 // Serve the index.html file for other routes
 app.get('*', (request, response) => {
     response.sendFile(path.join(__dirname, 'public', 'index.html'));

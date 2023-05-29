@@ -1,42 +1,36 @@
-const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { send } = require('micro');
+const microCors = require('micro-cors')();
 
-const app = express();
-const bodyParser = require('body-parser');
+module.exports = microCors(async (req, res) => {
+    if (req.method === 'POST') {
+        try {
+            const tweetText = req.body.tweetText;
+            const timestamp = new Date().toLocaleTimeString();
+            const newTweet = {
+                author: 'Ranim',
+                username: 'Reynim',
+                profile_image:
+                    'https://t3.ftcdn.net/jpg/05/58/82/34/240_F_558823483_uP4but5eEUX1ub7sY9As43YJ4er67J4E.jpg',
+                timestamp: timestamp,
+                content: tweetText,
+            };
 
-app.use(bodyParser.json());
-app.use((request, response, next) => {
-    response.header('Access-Control-Allow-Origin', '*');
-    next();
-});
+            const filePath = path.resolve(__dirname, '..', 'public', 'assets', 'js', 'mock-data.json');
+            const jsonData = await fs.promises.readFile(filePath, 'utf8');
+            const data = JSON.parse(jsonData);
 
-app.post('/', async (req, res) => { // Change the route to '/'
-    try {
-        const tweetText = req.body.tweetText;
-        const timestamp = new Date().toLocaleTimeString();
-        const newTweet = {
-            author: 'Ranim',
-            username: 'Reynim',
-            profile_image:
-                'https://t3.ftcdn.net/jpg/05/58/82/34/240_F_558823483_uP4but5eEUX1ub7sY9As43YJ4er67J4E.jpg',
-            timestamp: timestamp,
-            content: tweetText,
-        };
+            data.push(newTweet);
 
-        const filePath = path.resolve(__dirname, '..', 'public', 'assets', 'js', 'mock-data.json');
-        const jsonData = await fs.promises.readFile(filePath, 'utf8');
-        const data = JSON.parse(jsonData);
+            await fs.promises.writeFile(filePath, JSON.stringify(data));
 
-        data.push(newTweet);
-
-        await fs.promises.writeFile(filePath, JSON.stringify(data));
-
-        res.json(newTweet);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal server error');
+            return send(res, 200, newTweet);
+        } catch (err) {
+            console.error(err);
+            return send(res, 500, 'Internal server error');
+        }
     }
-});
 
-module.exports = app;
+    return send(res, 404, 'Not found');
+});
