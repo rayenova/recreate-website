@@ -1,5 +1,3 @@
-// tweet.js
-
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -13,7 +11,7 @@ app.use((request, response, next) => {
     next();
 });
 
-app.post('/tweet', async (req, res) => {
+app.post('/', async (req, res) => { // Change the route to '/'
     try {
         const tweetText = req.body.tweetText;
         const timestamp = new Date().toLocaleTimeString();
