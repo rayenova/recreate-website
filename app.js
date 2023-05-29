@@ -8,8 +8,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Import the tweet route
 const tweetRoute = require('./tweet');
 
-// Use the tweet route for the '/tweet' URL path
-app.use('/tweet', tweetRoute);
+// Use the tweet route for the root URL path
+app.use('/', tweetRoute); // Update the route to '/'
 
 // Serve the index.html file for other routes
 app.get('*', (req, res) => {
