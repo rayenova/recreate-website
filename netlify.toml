@@ -1,9 +1,9 @@
 [build]
-  command = "npm run build" # Adjust this command to start your server-side code
+  command = "npm run build"
+  functions = "functions"
+  publish = "public"
 
 [[redirects]]
   from = "/tweet/*" # Define the route for your server-side function
   to = "/.netlify/functions/tweet" # Map the route to your serverless function
 
-[build]
-  functions = "functions"
