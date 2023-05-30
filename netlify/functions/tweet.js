@@ -32,4 +32,4 @@ router.post('/', async (req, res) => {
 });
 
 
-module.exports = { handler };
+module.exports = router;
