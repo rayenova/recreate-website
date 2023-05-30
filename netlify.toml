@@ -4,7 +4,7 @@
 
 [[redirects]]
   from = "/tweets/*"
-  to = "./netlify/functions/tweet/:splat"
+  to = "/.netlify/functions/tweet/:splat"
   status = 200
 
 [[redirects]]
