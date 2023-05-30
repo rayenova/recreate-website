@@ -31,6 +31,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-module.exports = router;
+// Endpoint to handle the tweet submission
+router.post('/', handler);
 
-exports.handler = router;
+module.exports = { handler };
