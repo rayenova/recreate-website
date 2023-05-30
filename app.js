@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const tweetsRouter = require('./router/tweets');
+const tweetsRouter = require('./netlify/functions/tweets');
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,13 +19,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start the server only if not imported as a module
-if (!module.parent) {
-    const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
-    });
-}
 
 
 // const express = require('express');

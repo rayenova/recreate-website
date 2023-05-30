@@ -3,8 +3,11 @@
   functions = "netlify/functions/"
 
 [[redirects]]
+  from = "/tweets/*"
+  to = "/.netlify/functions/tweet/:splat"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-
