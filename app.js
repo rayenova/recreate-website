@@ -19,21 +19,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
-
-
-// Graceful shutdown
-process.on('SIGTERM', () => {
-    console.log('Received SIGTERM. Shutting down gracefully...');
-    server.close(() => {
-        console.log('Server closed.');
-        process.exit(0);
+// Start the server only if not imported as a module
+if (!module.parent) {
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
     });
-});
+}
+
 
 // const express = require('express');
 // const fs = require('fs');
