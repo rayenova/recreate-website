@@ -3,8 +3,8 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-// Endpoint to handle the tweet submission
-router.post('/', async (req, res) => {
+// Define the tweet handler
+const tweetHandler = async (req, res) => {
     try {
         const { tweetText } = req.body;
         const timestamp = new Date().toLocaleTimeString();
@@ -29,6 +29,9 @@ router.post('/', async (req, res) => {
         console.error(err);
         return res.status(500).json({ error: 'An internal server error occurred' });
     }
-});
+};
+
+// Endpoint to handle the tweet submission
+router.post('/', tweetHandler);
 
 module.exports = router;
