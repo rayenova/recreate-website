@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const tweetsRouter = require('./netlify/functions/tweets');
+const tweetsRouter = require('./netlify/functions/tweet');
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/tweets', tweetsRouter);
+app.use('/.netlify/functions/tweet', tweetsRouter);
 
 // Default route
 app.get('/', (req, res) => {
