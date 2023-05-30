@@ -6,7 +6,7 @@ $('.form').submit(function (event) {
 
     //ajax for the post method
     $.ajax({
-        url: '/tweets/',
+        url: '/netlify/functions/tweet',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ tweetText: tweetText }),
