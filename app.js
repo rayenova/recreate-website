@@ -1,46 +1,30 @@
 const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const fs = require('fs');
-
 const app = express();
+const path = require('path');
+const bodyParser = require('body-parser');
+const tweetsRouter = require('./router/tweets');
 
-app.use(cors());
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-// Serve static files from the 'public' directory
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
 
-// Route handler for the root URL path '/'
-app.post('/', async (req, res) => {
-    try {
-            const tweetText = req.body.tweetText;
-            const timestamp = new Date().toLocaleTimeString();
-            const newTweet = {
-                author: 'Ranim',
-                username: 'Reynim',
-                profile_image:
-                    'https://t3.ftcdn.net/jpg/05/58/82/34/240_F_558823483_uP4but5eEUX1ub7sY9As43YJ4er67J4E.jpg',
-                timestamp: timestamp,
-                content: tweetText,
-            };
+// Routes
+app.use('/tweets', tweetsRouter);
 
-            const filePath = path.resolve(__dirname, 'public', 'assets', 'js', 'mock-data.json');
-            const jsonData = await fs.promises.readFile(filePath, 'utf8');
-            const data = JSON.parse(jsonData);
+// Default route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
-            data.push(newTweet);
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
 
-            await fs.promises.writeFile(filePath, JSON.stringify(data));
-
-            return res.status(200).send(newTweet);
-    } catch (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'An internal server error occurred' });
-        }
-    })
-
-module.exports = app;
 
 
 
