@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/.netlify/functions/tweet', tweetsRouter);
+app.use('./netlify/functions/tweet', tweetsRouter);
 
 // Default route
 app.get('/', (req, res) => {
