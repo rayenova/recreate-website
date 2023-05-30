@@ -35,7 +35,7 @@ const tweetHandler = async (req, res) => {
 router.post('/', tweetHandler);
 
 
-// module.exports = router;
-module.exports = {
-    handler: router // Export tweetHandler as the handler for the Netlify function
-};
+module.exports = router;
+// module.exports = {
+//     handler: router // Export tweetHandler as the handler for the Netlify function
+// };
