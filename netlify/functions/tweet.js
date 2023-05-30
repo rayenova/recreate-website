@@ -16,7 +16,7 @@ const tweetHandler = async (req, res) => {
             content: tweetText,
         };
 
-        const filePath = path.resolve(__dirname, '../public/assets/js/mockdata.json');
+        const filePath = path.resolve(__dirname, '../../public/assets/js/mockdata.json');
         const jsonData = await fs.promises.readFile(filePath, 'utf8');
         const data = JSON.parse(jsonData);
 
@@ -34,7 +34,8 @@ const tweetHandler = async (req, res) => {
 // Endpoint to handle the tweet submission
 router.post('/', tweetHandler);
 
-module.exports.handler = router;
+module.exports = router;
+
 // module.exports = {
 //     handler: router // Export tweetHandler as the handler for the Netlify function
 // };

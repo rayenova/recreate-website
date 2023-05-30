@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/tweets/', tweetsRouter);
+app.use('/tweets', tweetsRouter);
 
 // Default route
 app.get('/', (req, res) => {
@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 });
 
 module.exports = app;
+
 
 
 
