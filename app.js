@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const tweetsRouter = require('/.netlify/functions/tweet');
+const tweetsRouter = require('./netlify/functions/tweet');
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
