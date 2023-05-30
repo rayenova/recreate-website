@@ -26,7 +26,14 @@ app.listen(port, () => {
 });
 
 
-
+// Graceful shutdown
+process.on('SIGTERM', () => {
+    console.log('Received SIGTERM. Shutting down gracefully...');
+    server.close(() => {
+        console.log('Server closed.');
+        process.exit(0);
+    });
+});
 
 // const express = require('express');
 // const fs = require('fs');
