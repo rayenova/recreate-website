@@ -35,3 +35,4 @@ const tweetHandler = async (req, res) => {
 router.post('/', tweetHandler);
 
 module.exports = router;
+exports.handler = router;
