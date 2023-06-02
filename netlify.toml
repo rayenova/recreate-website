@@ -4,7 +4,7 @@
 
 [[redirects]]
   from = "/tweets/*"
-  to = "/tweets/"
+  to = "/tweets"
   status = 200
 
 [[redirects]]
