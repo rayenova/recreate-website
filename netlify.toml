@@ -1,6 +1,5 @@
 [build]
   command = "node app.js"
-  functions = "netlify/functions/"
 
 [[redirects]]
   from = "/tweets/*"
