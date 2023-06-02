@@ -34,8 +34,7 @@ const tweetHandler = async (req, res) => {
 // Endpoint to handle the tweet submission
 router.post('/', tweetHandler);
 
-module.exports = router;
-
+module.exports.handler = router;
 // module.exports = {
 //     handler: router // Export tweetHandler as the handler for the Netlify function
 // };
