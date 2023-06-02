@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
 
@@ -11,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Define the tweet handler
-const tweetHandler = (req, res) => {
+const tweetHandler = async (req, res) => {
     try {
         const { tweetText } = req.body;
         const timestamp = new Date().toLocaleTimeString();
@@ -23,15 +24,13 @@ const tweetHandler = (req, res) => {
             content: tweetText,
         };
 
-        // Retrieve existing tweets from local storage or initialize an empty array
-        const storedTweets = localStorage.getItem('tweets');
-        const tweets = storedTweets ? JSON.parse(storedTweets) : [];
+        const filePath = path.resolve(__dirname, 'public/assets/js/mockdata.json');
+        const jsonData = await fs.promises.readFile(filePath, 'utf8');
+        const data = JSON.parse(jsonData);
 
-        // Add the new tweet to the array
-        tweets.push(newTweet);
+        data.push(newTweet);
 
-        // Save the updated tweets array to local storage
-        localStorage.setItem('tweets', JSON.stringify(tweets));
+        await fs.promises.writeFile(filePath, JSON.stringify(data));
 
         return res.status(200).json(newTweet);
     } catch (err) {
