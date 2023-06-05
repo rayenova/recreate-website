@@ -37,14 +37,14 @@ function renderTweet(tweet) {
     article.innerHTML = `
                 <div class="tweet-container">
                         <figure class="post-tweet-pf">
-                                <img src="${data.profile_image}" class="post-tweet-image">
+                                <img src="${tweet.profile_image}" class="post-tweet-image">
                         </figure>
                         <div class="account-tweet">
                             <div class="account-top">
                                 <div class="account-name">
-                                    <h2>${data.author}</h2>
-                                    <h4>@${data.username}</h4>
-                                    <h4><span class="dot">•</span> ${data.timestamp}</h4>
+                                    <h2>${tweet.author}</h2>
+                                    <h4>@${tweet.username}</h4>
+                                    <h4><span class="dot">•</span> ${tweet.timestamp}</h4>
                                 </div>
                                 <svg viewBox="0 0 24 24" aria-hidden="true" class="posted-tweet-icon">
                                     <g>
@@ -55,7 +55,7 @@ function renderTweet(tweet) {
                                 </svg>
                             </div>
                             <div class="account-tweet">
-                                <p>${data.content}</p>
+                                <p>${tweet.content}</p>
                             </div>
                             <div class="account-social-icons">
                                 <svg viewBox="0 0 24 24" aria-hidden="true" class="posted-tweet-icon">
