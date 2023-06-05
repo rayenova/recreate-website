@@ -34,7 +34,7 @@ const chatContainer = document.querySelector('.chat-container');
 
 let counter = 0;
 
-fetch('/js/mock-data.json')
+fetch('mock-data.json')
     .then(response => response.json())
     .then(data => {
         data.forEach(item => {
